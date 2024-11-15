@@ -5,12 +5,12 @@ services:
         image: flowiseai/flowise
         restart: always
         environment:
-            - PORT=${PORT}
-            - FLOWISE_USERNAME=${FLOWISE_USERNAME}
-            - FLOWISE_PASSWORD=${FLOWISE_PASSWORD}
-            - FLOWISE_SECRETKEY_OVERWRITE=${FLOWISE_SECRETKEY_OVERWRITE}
+            - PORT=${PORT:-3000}
+            - FLOWISE_USERNAME=${FLOWISE_USERNAME:-username}
+            - FLOWISE_PASSWORD=${FLOWISE_PASSWORD:-password}
+            - FLOWISE_SECRETKEY_OVERWRITE=${FLOWISE_SECRETKEY_OVERWRITE:-mysecretkey}
         ports:
-            - '${PORT}:${PORT}'
+            - '${PORT:-3000}:${PORT:-3000}'
         volumes:
             - ~/.flowise:/root/.flowise
         entrypoint: /bin/sh -c "sleep 3; flowise start"
